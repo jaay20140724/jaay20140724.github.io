@@ -1,53 +1,218 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jaayQAQ服务器</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jaayQAQ服务器</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!-- 配置Tailwind自定义颜色和字体 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            serverYellow: '#FFFF00',
+            serverGreen: '#00FF00',
+            serverBlack: '#000000',
+          },
+          fontFamily: {
+            server: ['Arial', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-shadow {
+        text-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
+      }
+      .float-animation {
+        animation: float 3s ease-in-out infinite;
+      }
+      .confetti {
+        position: fixed;
+        pointer-events: none;
+        z-index: 50;
+      }
+      .tooltip {
+        position: relative;
+      }
+      .tooltip-text {
+        visibility: hidden;
+        background-color: rgba(0, 255, 0, 0.8);
+        color: white;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 100;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        white-space: nowrap;
+      }
+      .tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgba(0, 255, 0, 0.8) transparent transparent transparent;
+      }
+      .show-tooltip .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.5;
+      }
+    }
+  </style>
 </head>
-<body>
-    <!-- 英雄区域 -->
-    <section class="hero-section">
-        <div class="hero-background">
-            <img src="https://pdf1.webgetstore.com/2025/10/31/44028c380ebeff4352cf007832b35f16.jpg?sg=bdd1c7efa945d9138871411490a58f0c&e=6904d686&fileName=mmexport1756549488946.jpg&fi=260035586" alt="服务器背景图" class="hero-image">
-            <div class="hero-overlay"></div>
-        </div>
-        
-        <!-- 🎉 表情动画容器 -->
-        <div class="emoji-container" id="emojiContainer"></div>
-        
-        <!-- 中央标题 -->
-        <h1 class="hero-title">jaayQAQ服务器</h1>
-    </section>
 
-    <!-- 规则介绍区域 -->
-    <section class="rules-section">
-        <div class="container">
-            <h2 class="rules-title">服务器规则</h2>
-            <ul class="rules-list">
-                <li class="rule-item">该服务器可以开外挂但不能打人</li>
-                <li class="rule-item">严禁在群里刷屏</li>
-                <li class="rule-item">在群里别问ip，因为在包里</li>
-                <li class="rule-item">若抓到蹦服后果自负</li>
-                <li class="rule-item">群号在下面，点击复制群号</li>
-            </ul>
-            
-            <!-- 复制按钮 -->
-            <button class="copy-button" id="copyButton">
-                点击复制QQ群号: 961684991
-            </button>
-        </div>
-    </section>
-
-    <!-- 浮空提示 -->
-    <div class="toast" id="toast">
-        ✅ 已复制到剪贴板！
+<body class="bg-serverBlack text-serverYellow font-server min-h-screen">
+  <!-- 主页照片和标题区域 -->
+  <header class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+    <!-- 背景图片 -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://pdf1.webgetstore.com/2025/10/31/44028c380ebeff4352cf007832b35f16.jpg?sg=bdd1c7efa945d9138871411490a58f0c&e=6904d686&fileName=mmexport1756549488946.jpg&fi=260035586" 
+           alt="服务器主图" 
+           class="w-full h-full object-cover opacity-70">
     </div>
+    
+    <!-- 中央大标题 -->
+    <div class="relative z-10 text-center px-4">
+      <h1 class="text-[clamp(3rem,15vw,10rem)] font-bold text-serverYellow text-shadow float-animation">
+        jaayQAQ服务器
+      </h1>
+    </div>
+    
+    <!-- 向下滚动提示 -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-serverYellow animate-bounce">
+      <i class="fa fa-chevron-down text-3xl"></i>
+    </div>
+  </header>
 
-    <script src="script.js"></script>
+  <!-- 介绍内容区域 -->
+  <section class="container mx-auto px-4 py-16 relative z-10">
+    <h2 class="text-[clamp(1.5rem,5vw,3rem)] text-center mb-12 text-shadow">服务器规则</h2>
+    
+    <div class="max-w-3xl mx-auto space-y-8">
+      <div class="p-6 border-2 border-serverYellow rounded-lg hover:bg-yellow-900/20 transition-all duration-300">
+        <p class="text-[clamp(1rem,3vw,1.5rem)]"><span class="text-2xl mr-2">1.</span>该服务器可以开外挂但不能打人</p>
+      </div>
+      
+      <div class="p-6 border-2 border-serverYellow rounded-lg hover:bg-yellow-900/20 transition-all duration-300">
+        <p class="text-[clamp(1rem,3vw,1.5rem)]"><span class="text-2xl mr-2">2.</span>严禁在群里刷屏</p>
+      </div>
+      
+      <div class="p-6 border-2 border-serverYellow rounded-lg hover:bg-yellow-900/20 transition-all duration-300">
+        <p class="text-[clamp(1rem,3vw,1.5rem)]"><span class="text-2xl mr-2">3.</span>在群里别问ip，因为在包里</p>
+      </div>
+      
+      <div class="p-6 border-2 border-serverYellow rounded-lg hover:bg-yellow-900/20 transition-all duration-300">
+        <p class="text-[clamp(1rem,3vw,1.5rem)]"><span class="text-2xl mr-2">4.</span>若抓到蹦服后果自负</p>
+      </div>
+      
+      <div class="p-6 border-2 border-serverYellow rounded-lg hover:bg-yellow-900/20 transition-all duration-300">
+        <p class="text-[clamp(1rem,3vw,1.5rem)]"><span class="text-2xl mr-2">5.</span>群号在下面，点击复制群号</p>
+      </div>
+    </div>
+    
+    <!-- 复制群号按钮 -->
+    <div class="mt-16 text-center">
+      <div class="tooltip inline-block" id="copyButton">
+        <button class="bg-serverGreen hover:bg-green-700 text-white font-bold py-4 px-8 rounded-full text-xl md:text-2xl transition-all duration-300 transform hover:scale-105">
+          <i class="fa fa-clipboard mr-2"></i>复制QQ群号
+        </button>
+        <span class="tooltip-text">已复制到剪贴板！</span>
+      </div>
+      <p class="mt-4 text-lg">群号: 961684991</p>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="py-8 text-center border-t border-serverYellow mt-16">
+    <p>&copy; 2023 jaayQAQ服务器 - 保留所有权利</p>
+  </footer>
+
+  <script>
+    // 创建🎉表情动画效果（替代雪花）
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.textContent = '🎉';
+      
+      // 随机位置和动画
+      const size = Math.random() * 20 + 20;
+      confetti.style.fontSize = `${size}px`;
+      confetti.style.left = `${Math.random() * 100}vw`;
+      confetti.style.animationDuration = `${Math.random() * 5 + 3}s`;
+      confetti.style.animationDelay = `${Math.random() * 5}s`;
+      confetti.style.animation = 'fall linear forwards';
+      
+      document.body.appendChild(confetti);
+      
+      // 动画结束后移除元素
+      setTimeout(() => {
+        confetti.remove();
+      }, 8000);
+    }
+    
+    // 定期创建🎉表情
+    setInterval(createConfetti, 300);
+    
+    // 初始创建一些🎉表情
+    for (let i = 0; i < 10; i++) {
+      setTimeout(createConfetti, i * 300);
+    }
+    
+    // 复制群号功能
+    const copyButton = document.getElementById('copyButton');
+    copyButton.addEventListener('click', () => {
+      const群号 = '961684991';
+      navigator.clipboard.writeText(群号).then(() => {
+        // 显示提示
+        copyButton.classList.add('show-tooltip');
+        
+        // 3秒后隐藏提示
+        setTimeout(() => {
+          copyButton.classList.remove('show-tooltip');
+        }, 3000);
+      });
+    });
+    
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
