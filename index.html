@@ -1,14 +1,151 @@
-<div style="margin: 10px 0;">
-  <iframe 
-    frameborder="0" 
-    border="0" 
-    marginwidth="0" 
-    marginheight="0" 
-    width="100%" 
-    max-width="330px"
-    height="100px"  
-    src="https://music.163.com/outchain/player?type=2&id=3315347594&auto=0&height=80"
-    loading="lazy"
-    title="网易云音乐播放器">
-  </iframe>
-</div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电脑小白必备装的软件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        .software-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        .software-card:hover {
+            transform: translateY(-5px);
+        }
+        .software-card h3 {
+            color: #2980b9;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+        .software-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+        .tag.essential {
+            background-color: #27ae60;
+        }
+        .tag.tool {
+            background-color: #f39c12;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #777;
+            margin-top: 2rem;
+        }
+        /* 网易云音乐播放器样式 */
+        .music-player {
+            text-align: center;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>电脑小白必备装的软件</h1>
+        <p>告别软件选择困难症，新手装机一站式指南</p>
+    </header>
+
+    <div class="container">
+        <div class="music-player">
+            <iframe 
+                frameborder="no" 
+                border="0" 
+                marginwidth="0" 
+                marginheight="0" 
+                width="330" 
+                height="86" 
+                src="https://music.163.com/outchain/player?type=2&id=3315347594&auto=0&height=66"
+                title="网易云音乐播放器">
+            </iframe>
+        </div>
+
+        <!-- 软件分类 -->
+        <h2 style="margin: 2rem 0; color: #2c3e50;">一、基础必备软件</h2>
+        <div class="software-card">
+            <h3>浏览器：Microsoft Edge / Google Chrome</h3>
+            <span class="tag essential">装机必装</span>
+            <p>推荐理由：Edge 内置广告拦截+隐私保护，Chrome 插件生态丰富，小白优先选 Edge，无需额外配置即可用。</p>
+        </div>
+
+        <div class="software-card">
+            <h3>压缩解压：Bandizip</h3>
+            <span class="tag essential">装机必装</span>
+            <p>推荐理由：免费无广告，支持所有主流压缩格式，操作简单，比 WinRAR 更适合新手。</p>
+        </div>
+
+        <div class="software-card">
+            <h3>办公软件：WPS Office</h3>
+            <span class="tag essential">装机必装</span>
+            <p>推荐理由：完全免费，兼容 Word/Excel/PPT，支持云文档，新手做表格、写文档的首选。</p>
+        </div>
+
+        <h2 style="margin: 2rem 0; color: #2c3e50;">二、实用工具软件</h2>
+        <div class="software-card">
+            <h3>截图工具：Snipaste</h3>
+            <span class="tag tool">效率神器</span>
+            <p>推荐理由：免费无广告，支持截图+贴图，快捷键一键操作，比系统自带截图工具更好用。</p>
+        </div>
+
+        <div class="software-card">
+            <h3>杀毒软件：火绒安全</h3>
+            <span class="tag tool">安全必备</span>
+            <p>推荐理由：轻巧不占内存，没有弹窗广告，能拦截捆绑软件安装，适合小白防坑。</p>
+        </div>
+
+        <div class="software-card">
+            <h3>视频播放：PotPlayer</h3>
+            <span class="tag tool">影音必备</span>
+            <p>推荐理由：支持所有视频格式，无需额外下载解码器，界面简洁，操作简单。</p>
+        </div>
+
+        <h2 style="margin: 2rem 0; color: #2c3e50;">三、小白避坑提醒</h2>
+        <div class="software-card" style="background-color: #fdf2e9;">
+            <h3 style="color: #e67e22;">❌ 这些软件千万别装</h3>
+            <p>1. 各种“全家桶”软件（如某60、某电脑管家）：捆绑安装+弹窗广告多<br>
+            2. 破解版软件：可能携带病毒，导致电脑卡顿<br>
+            3. 不知名的“优化工具”：反而会破坏系统稳定性</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>电脑小白必备软件清单 | 制作不易，记得收藏哦 ~</p>
+    </footer>
+</body>
+</html>
