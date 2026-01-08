@@ -3,149 +3,808 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>电脑小白必备装的软件</title>
+    <title>电脑小白必备装的软件 | 新手电脑软件指南</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
+        
         body {
-            background-color: #f5f5f5;
+            background-color: #f5f7fa;
             color: #333;
             line-height: 1.6;
         }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+        
         .container {
             max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 2rem;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .software-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, #4a6fa5 0%, #2c3e50 100%);
+            color: white;
+            padding: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        .software-card:hover {
-            transform: translateY(-5px);
-        }
-        .software-card h3 {
-            color: #2980b9;
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-        }
-        .software-card p {
-            color: #666;
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 1rem;
         }
-        .tag {
-            display: inline-block;
-            background-color: #e74c3c;
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            color: #64b5f6;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* 导航样式 */
+        nav {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #4a6fa5;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #2c3e50;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: #64b5f6;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #4a6fa5;
+            cursor: pointer;
+        }
+        
+        /* 主要内容区域 */
+        main {
+            padding: 3rem 0;
+        }
+        
+        .intro {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+        
+        .intro h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .intro p {
+            margin-bottom: 1.2rem;
+            color: #555;
+        }
+        
+        .warning {
+            background-color: #fff8e1;
+            border-left: 5px solid #ffc107;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        /* 分类筛选 */
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+            gap: 15px;
+        }
+        
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: white;
+            border: 2px solid #e1e8f0;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #4a6fa5;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: #4a6fa5;
             color: white;
+            border-color: #4a6fa5;
+        }
+        
+        /* 软件卡片 */
+        .software-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 3rem;
+        }
+        
+        .software-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .software-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .software-header {
+            padding: 1.5rem;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #eef2f7;
+            display: flex;
+            align-items: center;
+        }
+        
+        .software-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #e3f2fd;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.2rem;
+            font-size: 1.8rem;
+            color: #4a6fa5;
+        }
+        
+        .software-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+        
+        .software-category {
+            display: inline-block;
+            background-color: #e8f4fe;
+            color: #4a6fa5;
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
-        .tag.essential {
-            background-color: #27ae60;
+        
+        .software-body {
+            padding: 1.5rem;
         }
-        .tag.tool {
-            background-color: #f39c12;
+        
+        .software-description {
+            color: #555;
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
         }
+        
+        .software-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .software-features li {
+            padding: 0.3rem 0;
+            color: #666;
+        }
+        
+        .software-features i {
+            color: #4CAF50;
+            margin-right: 8px;
+        }
+        
+        .software-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background-color: #f9fbfd;
+            border-top: 1px solid #eef2f7;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background-color: #4a6fa5;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #3a5a80;
+        }
+        
+        /* 安装指南 */
+        .guide {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+        
+        .guide h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            background-color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #4a6fa5;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #4a6fa5;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        /* 页脚 */
         footer {
-            text-align: center;
-            padding: 2rem 0;
-            color: #777;
-            margin-top: 2rem;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 3rem 0 1.5rem;
         }
-        /* 网易云音乐播放器样式 */
-        .music-player {
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            color: #64b5f6;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #b0bec5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #64b5f6;
+        }
+        
+        .copyright {
             text-align: center;
-            margin: 2rem 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid #3a516e;
+            color: #b0bec5;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .software-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 0.8rem 1rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .software-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro, .guide {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 头部 -->
     <header>
-        <h1>电脑小白必备装的软件</h1>
-        <p>告别软件选择困难症，新手装机一站式指南</p>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-laptop-code logo-icon"></i>
+                <div>
+                    <h1>电脑小白必备装的软件</h1>
+                    <p class="subtitle">为您精心挑选安全、实用、免费的电脑软件，让您的电脑使用体验更流畅</p>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <div class="music-player">
-            <iframe 
-                frameborder="no" 
-                border="0" 
-                marginwidth="0" 
-                marginheight="0" 
-                width="330" 
-                height="86" 
-                src="https://music.163.com/outchain/player?type=2&id=3315347594&auto=0&height=66"
-                title="网易云音乐播放器">
-            </iframe>
+    <!-- 导航 -->
+    <nav>
+        <div class="container nav-container">
+            <div class="site-name">
+                <h2><i class="fas fa-desktop"></i> 小白软件指南</h2>
+            </div>
+            <button class="mobile-menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="#software"><i class="fas fa-th-large"></i> 软件推荐</a></li>
+                <li><a href="#guide"><i class="fas fa-book"></i> 安装指南</a></li>
+                <li><a href="#safety"><i class="fas fa-shield-alt"></i> 安全提示</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <!-- 软件分类 -->
-        <h2 style="margin: 2rem 0; color: #2c3e50;">一、基础必备软件</h2>
-        <div class="software-card">
-            <h3>浏览器：Microsoft Edge / Google Chrome</h3>
-            <span class="tag essential">装机必装</span>
-            <p>推荐理由：Edge 内置广告拦截+隐私保护，Chrome 插件生态丰富，小白优先选 Edge，无需额外配置即可用。</p>
-        </div>
+    <!-- 主要内容 -->
+    <main class="container">
+        <!-- 介绍部分 -->
+        <section class="intro" id="home">
+            <h2>欢迎来到电脑小白软件指南</h2>
+            <p>对于刚接触电脑的新手用户，安装合适的软件可以让您的电脑使用体验更加顺畅和安全。本网站为您精心筛选了各类常用软件，全部经过安全验证，避免您下载到捆绑恶意软件或广告的安装包。</p>
+            <p>我们按照软件类别进行分类，每个软件都提供了详细的功能介绍和安全下载链接。无论您是需要浏览器、办公软件还是安全工具，这里都能找到合适的选择。</p>
+            <div class="warning">
+                <p><strong>重要提示：</strong> 请务必从官方网站或可信赖的渠道下载软件，避免使用来历不明的安装包。在安装过程中注意取消勾选不需要的附加组件，防止安装不必要的捆绑软件。</p>
+            </div>
+        </section>
 
-        <div class="software-card">
-            <h3>压缩解压：Bandizip</h3>
-            <span class="tag essential">装机必装</span>
-            <p>推荐理由：免费无广告，支持所有主流压缩格式，操作简单，比 WinRAR 更适合新手。</p>
-        </div>
+        <!-- 分类筛选 -->
+        <section class="categories">
+            <button class="category-btn active" data-category="all">全部软件</button>
+            <button class="category-btn" data-category="browser">浏览器</button>
+            <button class="category-btn" data-category="security">安全防护</button>
+            <button class="category-btn" data-category="office">办公学习</button>
+            <button class="category-btn" data-category="tool">实用工具</button>
+            <button class="category-btn" data-category="media">影音娱乐</button>
+        </section>
 
-        <div class="software-card">
-            <h3>办公软件：WPS Office</h3>
-            <span class="tag essential">装机必装</span>
-            <p>推荐理由：完全免费，兼容 Word/Excel/PPT，支持云文档，新手做表格、写文档的首选。</p>
-        </div>
+        <!-- 软件推荐 -->
+        <section id="software">
+            <h2 style="margin-bottom: 1.5rem; color: #2c3e50;">推荐软件</h2>
+            <div class="software-grid">
+                <!-- Chrome 浏览器 -->
+                <div class="software-card" data-category="browser">
+                    <div class="software-header">
+                        <div class="software-icon">
+                            <i class="fab fa-chrome"></i>
+                        </div>
+                        <div>
+                            <h3 class="software-title">Google Chrome</h3>
+                            <span class="software-category">浏览器</span>
+                        </div>
+                    </div>
+                    <div class="software-body">
+                        <p class="software-description">谷歌浏览器，全球最流行的网页浏览器，速度快、安全性高，支持丰富的扩展插件。</p>
+                        <ul class="software-features">
+                            <li><i class="fas fa-check-circle"></i> 页面加载速度快</li>
+                            <li><i class="fas fa-check-circle"></i> 支持海量扩展插件</li>
+                            <li><i class="fas fa-check-circle"></i> 自动翻译网页内容</li>
+                            <li><i class="fas fa-check-circle"></i> 内置恶意软件和钓鱼保护</li>
+                        </ul>
+                    </div>
+                    <div class="software-footer">
+                        <span class="software-size">免费 / 86.3 MB</span>
+                        <a href="https://www.google.cn/chrome/" target="_blank" class="download-btn">官网下载</a>
+                    </div>
+                </div>
 
-        <h2 style="margin: 2rem 0; color: #2c3e50;">二、实用工具软件</h2>
-        <div class="software-card">
-            <h3>截图工具：Snipaste</h3>
-            <span class="tag tool">效率神器</span>
-            <p>推荐理由：免费无广告，支持截图+贴图，快捷键一键操作，比系统自带截图工具更好用。</p>
-        </div>
+                <!-- 火绒安全 -->
+                <div class="software-card" data-category="security">
+                    <div class="software-header">
+                        <div class="software-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="software-title">火绒安全</h3>
+                            <span class="software-category">安全防护</span>
+                        </div>
+                    </div>
+                    <div class="software-body">
+                        <p class="software-description">轻量高效的国产安全软件，无广告骚扰，提供病毒查杀、系统防护和隐私保护功能。</p>
+                        <ul class="software-features">
+                            <li><i class="fas fa-check-circle"></i> 轻量不卡电脑</li>
+                            <li><i class="fas fa-check-circle"></i> 无广告弹窗</li>
+                            <li><i class="fas fa-check-circle"></i> 有效拦截病毒和恶意软件</li>
+                            <li><i class="fas fa-check-circle"></i> 提供系统修复工具</li>
+                        </ul>
+                    </div>
+                    <div class="software-footer">
+                        <span class="software-size">免费 / 22.5 MB</span>
+                        <a href="https://www.huorong.cn/" target="_blank" class="download-btn">官网下载</a>
+                    </div>
+                </div>
 
-        <div class="software-card">
-            <h3>杀毒软件：火绒安全</h3>
-            <span class="tag tool">安全必备</span>
-            <p>推荐理由：轻巧不占内存，没有弹窗广告，能拦截捆绑软件安装，适合小白防坑。</p>
-        </div>
+                <!-- WPS Office -->
+                <div class="software-card" data-category="office">
+                    <div class="software-header">
+                        <div class="software-icon">
+                            <i class="fas fa-file-word"></i>
+                        </div>
+                        <div>
+                            <h3 class="software-title">WPS Office</h3>
+                            <span class="software-category">办公学习</span>
+                        </div>
+                    </div>
+                    <div class="software-body">
+                        <p class="software-description">国产办公软件套装，兼容Microsoft Office格式，包含文字、表格和演示三大组件。</p>
+                        <ul class="software-features">
+                            <li><i class="fas fa-check-circle"></i> 完全免费个人版</li>
+                            <li><i class="fas fa-check-circle"></i> 兼容Word、Excel、PPT格式</li>
+                            <li><i class="fas fa-check-circle"></i> 内置大量模板和素材</li>
+                            <li><i class="fas fa-check-circle"></i> 云文档同步功能</li>
+                        </ul>
+                    </div>
+                    <div class="software-footer">
+                        <span class="software-size">免费 / 176 MB</span>
+                        <a href="https://www.wps.cn/" target="_blank" class="download-btn">官网下载</a>
+                    </div>
+                </div>
 
-        <div class="software-card">
-            <h3>视频播放：PotPlayer</h3>
-            <span class="tag tool">影音必备</span>
-            <p>推荐理由：支持所有视频格式，无需额外下载解码器，界面简洁，操作简单。</p>
-        </div>
+                <!-- 7-Zip -->
+                <div class="software-card" data-category="tool">
+                    <div class="software-header">
+                        <div class="software-icon">
+                            <i class="fas fa-file-archive"></i>
+                        </div>
+                        <div>
+                            <h3 class="software-title">7-Zip</h3>
+                            <span class="software-category">实用工具</span>
+                        </div>
+                    </div>
+                    <div class="software-body">
+                        <p class="software-description">免费开源的文件压缩/解压缩工具，支持ZIP、RAR、7z等多种格式，压缩率高。</p>
+                        <ul class="software-features">
+                            <li><i class="fas fa-check-circle"></i> 完全免费开源</li>
+                            <li><i class="fas fa-check-circle"></i> 支持多种压缩格式</li>
+                            <li><i class="fas fa-check-circle"></i> 集成到右键菜单</li>
+                            <li><i class="fas fa-check-circle"></i> 强大的AES-256加密</li>
+                        </ul>
+                    </div>
+                    <div class="software-footer">
+                        <span class="software-size">免费 / 1.4 MB</span>
+                        <a href="https://www.7-zip.org/" target="_blank" class="download-btn">官网下载</a>
+                    </div>
+                </div>
 
-        <h2 style="margin: 2rem 0; color: #2c3e50;">三、小白避坑提醒</h2>
-        <div class="software-card" style="background-color: #fdf2e9;">
-            <h3 style="color: #e67e22;">❌ 这些软件千万别装</h3>
-            <p>1. 各种“全家桶”软件（如某60、某电脑管家）：捆绑安装+弹窗广告多<br>
-            2. 破解版软件：可能携带病毒，导致电脑卡顿<br>
-            3. 不知名的“优化工具”：反而会破坏系统稳定性</p>
-        </div>
-    </div>
+                <!-- PotPlayer -->
+                <div class="software-card" data-category="media">
+                    <div class="software-header">
+                        <div class="software-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div>
+                            <h3 class="software-title">PotPlayer</h3>
+                            <span class="software-category">影音娱乐</span>
+                        </div>
+                    </div>
+                    <div class="software-body">
+                        <p class="software-description">功能强大的本地视频播放器，支持几乎所有视频格式，播放流畅，占用资源少。</p>
+                        <ul class="software-features">
+                            <li><i class="fas fa-check-circle"></i> 支持超多视频格式</li>
+                            <li><i class="fas fa-check-circle"></i> 播放流畅不卡顿</li>
+                            <li><i class="fas fa-check-circle"></i> 可自定义皮肤和设置</li>
+                            <li><i class="fas fa-check-circle"></i> 无广告和捆绑软件</li>
+                        </ul>
+                    </div>
+                    <div class="software-footer">
+                        <span class="software-size">免费 / 28.7 MB</span>
+                        <a href="https://potplayer.daum.net/" target="_blank" class="download-btn">官网下载</a>
+                    </div>
+                </div>
 
+                <!-- Everything -->
+                <div class="software-card" data-category="tool">
+                    <div class="software-header">
+                        <div class="software-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div>
+                            <h3 class="software-title">Everything</h3>
+                            <span class="software-category">实用工具</span>
+                        </div>
+                    </div>
+                    <div class="software-body">
+                        <p class="software-description">文件搜索工具，几乎可以瞬间找到电脑上的任何文件，比Windows自带搜索快数百倍。</p>
+                        <ul class="software-features">
+                            <li><i class="fas fa-check-circle"></i> 搜索速度极快</li>
+                            <li><i class="fas fa-check-circle"></i> 占用系统资源极少</li>
+                            <li><i class="fas fa-check-circle"></i> 支持高级搜索语法</li>
+                            <li><i class="fas fa-check-circle"></i> 可集成到右键菜单</li>
+                        </ul>
+                    </div>
+                    <div class="software-footer">
+                        <span class="software-size">免费 / 1.8 MB</span>
+                        <a href="https://www.voidtools.com/" target="_blank" class="download-btn">官网下载</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 安装指南 -->
+        <section class="guide" id="guide">
+            <h2>安全安装指南</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>从官网下载</h3>
+                    <p>尽量从软件的官方网站下载，避免使用第三方下载站，防止下载到捆绑恶意软件的版本。</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>注意安装选项</h3>
+                    <p>安装过程中选择"自定义安装"，仔细查看每一步，取消勾选不需要的附加软件和工具栏。</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3选择安装位置</h3>
+                    <p>建议将软件安装到非系统盘（如D盘），避免C盘空间不足，也便于重装系统后保留数据。</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>定期更新</h3>
+                    <p>保持软件更新可以修复安全漏洞，获得新功能，但注意更新时同样要留意附加选项。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 安全提示 -->
+        <section class="intro" id="safety">
+            <h2>电脑安全提示</h2>
+            <p>对于电脑新手，除了安装必备软件外，养成良好的电脑使用习惯同样重要：</p>
+            <ul class="software-features" style="margin-top: 1rem;">
+                <li><i class="fas fa-shield-alt"></i> 安装一款可靠的安全软件并保持更新</li>
+                <li><i class="fas fa-shield-alt"></i> 定期备份重要文件到移动硬盘或云盘</li>
+                <li><i class="fas fa-shield-alt"></i> 不随意点击不明链接和邮件附件</li>
+                <li><i class="fas fa-shield-alt"></i> 为不同的账户设置不同的密码</li>
+                <li><i class="fas fa-shield-alt"></i> 定期清理电脑中的垃圾文件和缓存</li>
+                <li><i class="fas fa-shield-alt"></i> 在公共网络中使用VPN保护隐私</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
     <footer>
-        <p>电脑小白必备软件清单 | 制作不易，记得收藏哦 ~</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>电脑小白必备软件</h3>
+                    <p>为电脑新手提供安全可靠的软件推荐和安装指南，帮助您更好地使用电脑。</p>
+                    <p style="margin-top: 1rem;"><i class="fas fa-envelope"></i> contact@softwareguide.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#software">软件推荐</a></li>
+                        <li><a href="#guide">安装指南</a></li>
+                        <li><a href="#safety">安全提示</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>软件分类</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="category-filter" data-category="browser">浏览器</a></li>
+                        <li><a href="#" class="category-filter" data-category="security">安全防护</a></li>
+                        <li><a href="#" class="category-filter" data-category="office">办公学习</a></li>
+                        <li><a href="#" class="category-filter" data-category="tool">实用工具</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2023 电脑小白必备软件指南 | 本网站推荐的软件均来自官方网站，仅供学习参考使用</p>
+                <p style="margin-top: 0.5rem;">免责声明：本网站不存储任何软件安装包，所有下载链接指向官方网站</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        // 软件分类筛选功能
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // 更新按钮活动状态
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // 获取选中的分类
+                const category = this.getAttribute('data-category');
+                
+                // 筛选显示对应的软件卡片
+                document.querySelectorAll('.software-card').forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 页脚分类筛选链接
+        document.querySelectorAll('.category-filter').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.getAttribute('data-category');
+                
+                // 触发对应分类按钮的点击事件
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    if (btn.getAttribute('data-category') === category) {
+                        btn.click();
+                    }
+                });
+                
+                // 滚动到软件区域
+                document.getElementById('software').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // 导航链接平滑滚动
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 关闭移动端菜单
+                document.getElementById('navLinks').classList.remove('active');
+                
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // 页面加载后显示所有软件
+        document.addEventListener('DOMContentLoaded', function() {
+            // 默认显示所有软件
+            document.querySelector('.category-btn.active').click();
+        });
+    </script>
 </body>
 </html>
